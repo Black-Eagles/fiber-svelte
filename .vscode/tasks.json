@@ -1,0 +1,39 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        // Go Fiber Back-end Server
+        {
+            "label": "Build Go Server",
+            "type": "shell",
+            "group": "build",
+            "command": "go build -o ./build/ ${fileBasename}",
+        },{
+            "label": "Run Go Server",
+            "type": "shell",
+            "group": "test",
+            "command": "go run ${fileBasename}",
+        },{
+            "label": "Run compiled Server",
+            "type": "shell",
+            "group": "test",
+            "windows": {
+                "command": "./build/${fileBasenameNoExtension}.exe",
+            },
+            "command": "./build/${fileBasenameNoExtension}"
+        },
+        // Svelte Front-End GUI
+        {
+            "label": "Build Svelte GUI",
+            "type": "npm",
+            "group": "test",
+            "script": "build"
+        },{
+            "label": "Run Svelte GUI and Go Server",
+            "type": "npm",
+            "group": "test",
+            "script": "dev"
+        }
+    ]
+}
